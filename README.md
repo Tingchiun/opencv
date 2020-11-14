@@ -1,5 +1,8 @@
 ## OpenCV: Open Source Computer Vision Library
 
+### 
+* use platforms/ios/build.sh to do the build 
+
 ### Resources
 
 * Homepage: <https://opencv.org>
