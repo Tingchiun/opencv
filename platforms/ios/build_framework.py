@@ -455,10 +455,10 @@ if __name__ == "__main__":
     b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without, args.disable, args.enablenonfree,
         [
             (iphoneos_archs, "iPhoneOS"),
-        ] if os.environ.get('BUILD_PRECOMMIT', None) else
-        [
-            (iphoneos_archs, "iPhoneOS"),
-            (iphonesimulator_archs, "iPhoneSimulator"),
+        #] if os.environ.get('BUILD_PRECOMMIT', None) else
+        #[
+        #    (iphoneos_archs, "iPhoneOS"),
+        #    (iphonesimulator_archs, "iPhoneSimulator"),
         ], args.debug, args.debug_info, args.framework_name, args.run_tests, args.build_docs)
 
     b.build(args.out)
