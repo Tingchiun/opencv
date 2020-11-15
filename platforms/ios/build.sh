@@ -12,4 +12,4 @@ python  build_framework.py \
     --without videoio \
     --without world \
     --without dnn \
-    output
+    ../../output
