@@ -169,12 +169,11 @@ class Builder:
             "-DCMAKE_BUILD_TYPE=%s" % self.getConfiguration(),
             "-DOPENCV_INCLUDE_INSTALL_PATH=include",
             "-DOPENCV_3P_LIB_INSTALL_PATH=lib/3rdparty",
+            "-DBUILD_PROTOBUF=OFF",
             "-DFRAMEWORK_NAME=%s" % self.framework_name,
         ] + ([
             "-DWITH_CUDA=OFF",
-            "-DBUILD_LIST=imgcodecs,core,imgproc",
             "-DBUILD_SHARED_LIBS=ON",
-            "-DBUILD_PROTOBUF=OFF",
             "-DCMAKE_MACOSX_BUNDLE=OFF",
             "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO",
         ] if self.dynamic and not self.build_objc_wrapper else []) + ([
