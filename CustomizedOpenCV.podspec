@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/Ting Chung/CustomizedOpenCV'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ting Chung' => 'tingchiun@gmail.com' }
-  s.source           = { :http => 'https://github.com/Tingchiun/opencv/raw/TestBuild_4.5.0_static_with_bitcode_on_simulator_off/output/opencv2.framework.zip'}
-  s.sourcefiles      = 'output/opencv2.framework.zip'
+  s.source           = { :http => 'https://github.com/Tingchiun/opencv/raw/TestBuild_4.5.0_static_with_bitcode_on_simulator_off/opencv2.framework.zip'}
+  s.sourcefiles      = 'opencv2.framework.zip'
 
   s.libraries        = 'stdc++'
 
