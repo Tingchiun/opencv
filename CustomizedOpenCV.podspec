@@ -14,10 +14,12 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/Ting Chung/CustomizedOpenCV'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ting Chung' => 'tingchiun@gmail.com' }
-  s.source           = { :git => 'https://github.com/Tingchiun/opencv.git', :tag => s.version.to_s }
+  s.source           = { :http => 'https://github.com/Tingchiun/opencv/raw/TestBuild_4.5.0_static_bitcode_on_simulator_off/opencv2.framework.zip', :tag => s.version.to_s }
+
 
   s.ios.deployment_target = '12.0'
 
-  s.vendored_frameworks = 'platforms/ios/output/opencv2.framework'
-  s.header_mappings_dir = 'platforms/ios/output/opencv2.framework/Versions/A/Headers'
+  s.vendored_frameworks = 'opencv2.framework'
+  s.header_mappings_dir = 'opencv2.framework/Versions/A/Headers'
+  #s.xcconfig = { 'USER_HEADER_SEARCH_PATH' => '"${PROJECT_DIR}/.."/**'}
 end
