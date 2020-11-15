@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks = 'opencv2.framework'
   s.header_mappings_dir = 'opencv2.framework/Versions/A/Headers'
+  s.xcconfig = { 'USER_HEADER_SEARCH_PATH' => '"${PROJECT_DIR}/.."/**'}
 end
