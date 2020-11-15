@@ -175,14 +175,14 @@ class Builder:
             "-DBUILD_LIST=imgcodecs,core,imgproc",
             "-DBUILD_SHARED_LIBS=ON",
             "-DBUILD_PROTOBUF=OFF",
-            "-DCMAKE_MACOSX_BUNDLE=ON",
+            "-DCMAKE_MACOSX_BUNDLE=OFF",
             "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO",
         ] if self.dynamic and not self.build_objc_wrapper else []) + ([
             "-DDYNAMIC_PLIST=ON"
         ] if self.dynamic else []) + ([
             "-DOPENCV_ENABLE_NONFREE=ON"
         ] if self.enablenonfree else []) + ([
-            "-DBUILD_WITH_DEBUG_INFO=ON"
+            "-DBUILD_WITH_DEBUG_INFO=OFF"
         ] if self.debug_info else [])
 
         if len(self.exclude) > 0:
@@ -455,10 +455,10 @@ if __name__ == "__main__":
     b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without, args.disable, args.enablenonfree,
         [
             (iphoneos_archs, "iPhoneOS"),
-        ] if os.environ.get('BUILD_PRECOMMIT', None) else
-        [
-            (iphoneos_archs, "iPhoneOS"),
-            (iphonesimulator_archs, "iPhoneSimulator"),
+        #] if os.environ.get('BUILD_PRECOMMIT', None) else
+        #[
+        #    (iphoneos_archs, "iPhoneOS"),
+        #    (iphonesimulator_archs, "iPhoneSimulator"),
         ], args.debug, args.debug_info, args.framework_name, args.run_tests, args.build_docs)
 
     b.build(args.out)
