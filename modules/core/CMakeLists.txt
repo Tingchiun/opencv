@@ -23,6 +23,9 @@ ocv_add_module(core
 
 set(extra_libs "")
 
+set(CMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL "z")
+
+
 if(WINRT AND WINDOWS_STORE AND CMAKE_SYSTEM_VERSION MATCHES "8.0")
   list(APPEND extra_libs ole32.lib)
 endif()

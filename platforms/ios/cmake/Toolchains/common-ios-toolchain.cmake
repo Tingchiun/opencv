@@ -1,5 +1,7 @@
 # load settings in case of "try compile"
 set(TOOLCHAIN_CONFIG_FILE "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/toolchain.config.cmake")
+# before - 105.5 after 105.5
+set(CMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL "z")
 get_property(__IN_TRY_COMPILE GLOBAL PROPERTY IN_TRY_COMPILE)
 if(__IN_TRY_COMPILE)
   set(TOOLCHAIN_CONFIG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../toolchain.config.cmake")

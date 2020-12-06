@@ -1,4 +1,5 @@
 set(the_description "Image Processing")
+set(CMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL "z")
 ocv_add_dispatched_file(accum SSE4_1 AVX AVX2)
 ocv_add_dispatched_file(bilateral_filter SSE2 AVX2)
 ocv_add_dispatched_file(box_filter SSE2 SSE4_1 AVX2)

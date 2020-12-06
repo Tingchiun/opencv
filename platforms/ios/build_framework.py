@@ -119,6 +119,8 @@ class Builder:
             if xcode_ver >= 7 and target[1] == 'iPhoneOS' and self.bitcodedisabled == False:
                 cmake_flags.append("-DCMAKE_C_FLAGS=-fembed-bitcode")
                 cmake_flags.append("-DCMAKE_CXX_FLAGS=-fembed-bitcode")
+                #cmake_fla/gs.append("-DCMAKE_C_FLAGS=-Os")
+                #cmake_flags.append("-DCMAKE_CXX_FLAGS=-Os")
             self.buildOne(target[0], target[1], main_build_dir, cmake_flags)
 
             if not self.dynamic:
@@ -173,9 +175,17 @@ class Builder:
             "-DFRAMEWORK_NAME=%s" % self.framework_name,
         ] + ([
             "-DWITH_CUDA=OFF",
+            "-DWITH_IPP=OFF",
             "-DBUILD_SHARED_LIBS=ON",
             "-DCMAKE_MACOSX_BUNDLE=OFF",
             "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO",
+            #"-DCMAKE_XCODE_ATTRIBUTE_DEPLOYMENT_POSTPROCESSING=YES",
+            #"-DCMAKE_XCODE_ATTRIBUTE_DEAD_CODE_STRIPPING=YES",
+            #"-DCMAKE_XCODE_ATTRIBUTE_COPY_PHASE_STRIP=YES",
+            #"-DCMAKE_XCODE_ATTRIBUTE_STRIP_SWIFT_SYMBOLS=YES",
+            #"-DCMAKE_XCODE_ATTRIBUTE_STRIP_INSTALLED_PRODUCT=YES",
+            #"-DCMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL=s",
+            "-DCMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL=z",
         ] if self.dynamic and not self.build_objc_wrapper else []) + ([
             "-DDYNAMIC_PLIST=ON"
         ] if self.dynamic else []) + ([
@@ -332,8 +342,8 @@ class Builder:
             platform_name_map = {
                     "arm": "armv7-apple-ios",
                     "arm64": "arm64-apple-ios",
-                    "i386": "i386-apple-ios-simulator",
-                    "x86_64": "x86_64-apple-ios-simulator",
+                    #"i386": "i386-apple-ios-simulator",
+                    #"x86_64": "x86_64-apple-ios-simulator",
                 } if builddirs[0].find("iphone") != -1 else {
                     "x86_64": "x86_64-apple-macos",
                     "arm64": "arm64-apple-macos",
@@ -451,13 +461,16 @@ if __name__ == "__main__":
         if not "objc" in args.without:
             args.without.append("objc")
 
-    b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without, args.disable, args.enablenonfree,
+    #b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without, args.disable, args.enablenonfree,
+    b = iOSBuilder(args.opencv, None, args.dynamic, args.bitcodedisabled, args.without, args.disable, False,
+
         [
             (iphoneos_archs, "iPhoneOS"),
         ] if os.environ.get('BUILD_PRECOMMIT', None) else
         [
             (iphoneos_archs, "iPhoneOS"),
-            (iphonesimulator_archs, "iPhoneSimulator"),
-        ], args.debug, args.debug_info, args.framework_name, args.run_tests, args.build_docs)
+            #(iphonesimulator_archs, "iPhoneSimulator"),
+        ], False, False, args.framework_name, False, False)
+        #], args.debug, args.debug_info, args.framework_name, args.run_tests, args.build_docs)
 
     b.build(args.out)

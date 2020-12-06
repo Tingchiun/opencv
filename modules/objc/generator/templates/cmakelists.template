@@ -31,12 +31,13 @@ install(TARGETS opencv_objc_framework LIBRARY DESTINATION lib)
 
 enable_language(Swift)
 
-# Additional target properties
+# Additional target properties, before - 105.5, after - 100.4
 set_target_properties(opencv_objc_framework PROPERTIES
     OUTPUT_NAME "$framework"
     ARCHIVE_OUTPUT_DIRECTORY "$${BUILD_ROOT}/lib"
     XCODE_ATTRIBUTE_SWIFT_VERSION 5.0
     XCODE_ATTRIBUTE_OTHER_SWIFT_FLAGS "-Xcc $${SUPPRESS_WARNINGS_FLAGS}"
+    XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL "z"
     FRAMEWORK TRUE
     MACOSX_FRAMEWORK_IDENTIFIER org.opencv.$framework
     PUBLIC_HEADER "$${objc_headers}"

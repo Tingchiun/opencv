@@ -1,4 +1,5 @@
 message(STATUS "Setting up iPhoneOS toolchain for IOS_ARCH='${IOS_ARCH}'")
 set(IPHONEOS TRUE)
+set(CMAKE_XCODE_ATTRIBUTE_GCC_OPTIMIZATION_LEVEL "z")
 include(${CMAKE_CURRENT_LIST_DIR}/common-ios-toolchain.cmake)
 message(STATUS "iPhoneOS toolchain loaded")

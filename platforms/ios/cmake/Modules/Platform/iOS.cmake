@@ -51,7 +51,12 @@ set (no_warn "-Wno-unused-function -Wno-overloaded-virtual")
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${no_warn}")
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -fvisibility=hidden -fvisibility-inlines-hidden ${no_warn}")
 
-set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -ffast-math")
+// ChungTing add this - before - 105.5 after - 105.5
+#set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -ffast-math")
+set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -Os -ffast-math")
+// ChungTing add this - before - 105.5 after - 105.5
+set(CMAKE_C_FLAGS_RELEASE "-Os")
+
 if(NOT IOS_ARCH STREQUAL "armv7" AND NOT IOS_ARCH STREQUAL "armv7s")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fomit-frame-pointer")
 endif()
